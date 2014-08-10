@@ -1,7 +1,10 @@
 {% set postgres = salt['grains.filter_by']({
     'Debian': {
         'pkg': 'postgresql-9.1',
-        'python': 'python-pygresql',
+        'client_dev_pkg': 'libpq-dev',
+        'server_dev_pkg': 'postgresql-server-dev-9.1',
+        'python_dev_pkg': 'python-dev',
+        'python': 'python-psycopg2',
         'service': 'postgresql',
         'pg_hba': '/etc/postgresql/9.1/main/pg_hba.conf',
     },
