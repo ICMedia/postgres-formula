@@ -14,14 +14,20 @@ postgresql:
       - pkg: {{ postgres.pkg }}
 
       
-postgresql-server-dev-9.3:
+{% if postgres.server_dev_pkg %}
+{{ postgres.server_dev_pkg }}:
   pkg.installed
-  
-libpq-dev:
-  pkg.installed
+{% endif %}
 
-python-dev:
+{% if postgres.client_dev_pkg %}
+{{ postgres.client_dev_pkg }}:
   pkg.installed
+{% endif %}
+
+{% if postgres.python_dev_pkg %}
+{{ postgres.python_dev_pkg }}:
+  pkg.installed
+{% endif %}
 
 {% if 'pg_hba.conf' in pillar.get('postgres', {}) %}
 pg_hba.conf:
